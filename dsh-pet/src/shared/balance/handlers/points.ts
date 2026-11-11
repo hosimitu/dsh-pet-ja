@@ -29,8 +29,8 @@ function pointsPercent(v: BalanceView): number | undefined {
  */
 function pointsRows(v: BalanceView): BalanceBubbleRow[] {
   const p = v.points;
-  if (!p) return [{ role: 'label', text: '积分数据不可用' }];
-  return [{ role: 'label', text: '余额 ' + p.total + ' ' + p.unit }];
+  if (!p) return [{ role: 'label', text: 'ポイントデータが取得できません' }];
+  return [{ role: 'label', text: '残高 ' + p.total + ' ' + p.unit }];
 }
 
 /** points 形态的展示规则：百分比按积分基准折算，气泡只拼数字与单位。 */

@@ -84,7 +84,7 @@ export function createChatDom(opts: { capture?: () => Promise<EncodedImage>; hea
 
   const input = document.createElement('textarea');
   input.className = 'dsh-pet-chat-input';
-  input.placeholder = '说点什么…';
+  input.placeholder = 'なんかつぶやく…';
   input.maxLength = 2000;
   input.rows = 1;
 

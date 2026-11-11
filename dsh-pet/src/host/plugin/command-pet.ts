@@ -25,8 +25,8 @@ export function registerPetCommand(deps: CommandPetInput): void {
     () =>
       ctx.commands.register({
         name: 'pet',
-        description: '选择桌宠（/chat 对话的目标；支持选择框或手输 id/名字）',
-        input: { hint: '[宠物 id 或名字]（留空查看当前）' },
+        description: 'ペットを選択（/chat の相手。選択ボックスか id/名前の手入力）',
+        input: { hint: '[ペットの id か名前]（空欄で現在のペットを表示）' },
         handler: ({ rawInput }: { rawInput: string }) => {
           const arg = rawInput.trim();
           let eff: Record<string, unknown>[];
@@ -40,18 +40,18 @@ export function registerPetCommand(deps: CommandPetInput): void {
             const found = eff.find((p) => String(p.id) === cur);
             return {
               kind: 'success',
-              text: '当前桌宠：' + (found ? petDisplayName(found) : cur || '（无可交互桌宠）'),
+              text: '現在のペット：' + (found ? petDisplayName(found) : cur || '（操作できるペットなし）'),
             };
           }
           const byId = eff.find((p) => String(p.id) === arg);
           if (byId) {
             setActivePetId(String(byId.id));
-            return { kind: 'success', text: '已选择桌宠：' + petDisplayName(byId) };
+            return { kind: 'success', text: 'ペットを選択：' + petDisplayName(byId) };
           }
           const byName = eff.filter((p) => petDisplayName(p) === arg);
           if (byName.length === 1) {
             setActivePetId(String(byName[0].id));
-            return { kind: 'success', text: '已选择桌宠：' + petDisplayName(byName[0]) };
+            return { kind: 'success', text: 'ペットを選択：' + petDisplayName(byName[0]) };
           }
           if (byName.length > 1) {
             return {
@@ -66,7 +66,7 @@ export function registerPetCommand(deps: CommandPetInput): void {
                 '），请用 id 指定',
             };
           }
-          return { kind: 'error', text: '找不到桌宠「' + arg + '」（id 或名字都行；/pet 回车可打开选择框）' };
+          return { kind: 'error', text: 'ペット「' + arg + '」は見つかりません（id か名前。/pet で選択ボックスが開きます）' };
         },
       }),
     'dsh-pet: /pet command',

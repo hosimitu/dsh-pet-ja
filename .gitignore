@@ -51,3 +51,6 @@ dsh-pet/dist-app/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# ── npm（本フォークは pnpm を使う。npm install の副産物はコミットしない） ──
+dsh-pet/package-lock.json
