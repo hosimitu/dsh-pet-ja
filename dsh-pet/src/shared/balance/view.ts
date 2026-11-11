@@ -19,17 +19,17 @@ function unavailableRows(state: BalanceUnavailable): BalanceBubbleRow[] {
   const rows: BalanceBubbleRow[] =
     state.reason === 'unsupported'
       ? [
-          { role: 'error', text: '当前服务商暂不支持余额查询' },
-          { role: 'sub', text: '当前服务商：' + state.provider },
+          { role: 'error', text: '現在のプロバイダは残高照会に未対応です' },
+          { role: 'sub', text: '現在のプロバイダ：' + state.provider },
         ]
       : state.reason === 'credential-missing'
         ? [
             // host 的 message 已自带「缺少凭证 X」前缀，这里原样展示，不再加前缀。
-            { role: 'error', text: '缺少余额查询凭证' },
+            { role: 'error', text: '残高照会用の資格情報がありません' },
             { role: 'sub', text: state.message ?? '' },
           ]
         : [
-            { role: 'error', text: '余额查询失败' },
+            { role: 'error', text: '残高照会に失敗しました' },
             { role: 'sub', text: state.message ?? '' },
           ];
   return rows.filter((r) => r.role !== 'quota' && r.text !== '');
