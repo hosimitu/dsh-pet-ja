@@ -24,28 +24,60 @@ export interface ToolRule {
 }
 
 /** 文件名/图片类：每句都带 {target}。 */
-const FILE_COPY: readonly CopyLine[] = ['翻翻 {target} 看看嘛', '{target} 里面写了啥呢', '我先瞅瞅 {target} 哈'];
+const FILE_COPY: readonly CopyLine[] = [
+  '{target} をぱらぱら見てみよう',
+  '{target} には何が書いてあるのかな',
+  'ちょっと {target} を覗いてみるね',
+];
 
 /** 写文件。 */
-const WRITE_COPY: readonly CopyLine[] = ['写点东西到 {target}', '{target} 马上写出来', '给 {target} 添点料'];
+const WRITE_COPY: readonly CopyLine[] = [
+  '{target} に何か書き込むね',
+  '{target} をすぐ書き出すよ',
+  '{target} にちょっと足すね',
+];
 
 /** 改文件。 */
-const EDIT_COPY: readonly CopyLine[] = ['{target} 得改改啦', '我来动动 {target} 哦', '{target} 这里要修一下'];
+const EDIT_COPY: readonly CopyLine[] = [
+  '{target} を直さないとね',
+  '{target} をいじるよ',
+  '{target} のここを直すね',
+];
 
 /** 找文件。 */
-const GLOB_COPY: readonly CopyLine[] = ['{target} 都躲哪儿了呢', '找找 {target} 在不在', '{target} 藏在哪个角落呀'];
+const GLOB_COPY: readonly CopyLine[] = [
+  '{target} はどこに隠れてるのかな',
+  '{target} があるか探してみる',
+  '{target} はどこかな',
+];
 
 /** 搜内容。 */
-const GREP_COPY: readonly CopyLine[] = ['{target} 藏哪儿了呢', '搜搜 {target} 在哪', '哪儿有 {target} 呀'];
+const GREP_COPY: readonly CopyLine[] = [
+  '{target} はどこかな',
+  '{target} を探してみる',
+  '{target} はどこにあるのかな',
+];
 
 /** 给人看文件。 */
-const PRESENT_COPY: readonly CopyLine[] = ['给你看 {target} 哦', '{target} 拿来给你瞧瞧', '喏，{target} 在这儿'];
+const PRESENT_COPY: readonly CopyLine[] = [
+  '{target} を見せるね',
+  '{target} を持ってきたよ',
+  'はい、{target} はこれ',
+];
 
 /** 学技能。 */
-const SKILL_COPY: readonly CopyLine[] = ['学个新本事 {target}', '{target} 这招得记住', '把 {target} 学起来'];
+const SKILL_COPY: readonly CopyLine[] = [
+  '{target} という技を覚えるよ',
+  '{target} のコツは覚えておくね',
+  '{target} を身につけるよ',
+];
 
 /** 委派子任务。 */
-const SUBAGENT_COPY: readonly CopyLine[] = ['叫人搭把手：{target}', '让帮手去看看 {target}', '{target} 交给帮手了'];
+const SUBAGENT_COPY: readonly CopyLine[] = [
+  '助っ人を呼ぶよ：{target}',
+  '助っ人に見てもらうね {target}',
+  '{target} は助っ人に任せたよ',
+];
 
 /** 一个工具的文案：3 句带 {target} 的说法 + 目标太长时的一句纯氛围兜底。 */
 export interface ToolCopy {
@@ -56,60 +88,88 @@ export interface ToolCopy {
 
 /** 工具 → 文案。没列在这里的工具走 UNKNOWN_TOOL_LINE。 */
 export const TOOL_COPY: Readonly<Record<string, ToolCopy>> = {
-  read: { lines: FILE_COPY, short: '翻翻代码看看' },
+  read: { lines: FILE_COPY, short: 'コードをぱらぱら見る' },
   read_image: {
-    lines: ['这 {target} 长啥样呀', '让我瞧瞧 {target} 呗', '{target} 是张什么图呢'],
-    short: '看看这张图是啥',
+    lines: ['{target} ってどんな感じかな', '{target} を見せて', '{target} はどんな画像かな'],
+    short: 'この画像は何かな',
   },
-  write: { lines: WRITE_COPY, short: '写点东西进去' },
-  edit: { lines: EDIT_COPY, short: '这里得改改' },
-  str_replace_editor: { lines: EDIT_COPY, short: '这里得改改' },
-  glob: { lines: GLOB_COPY, short: '找找东西在哪' },
-  grep: { lines: GREP_COPY, short: '到处翻翻看' },
-  present: { lines: PRESENT_COPY, short: '拿个东西给你看' },
-  skill: { lines: SKILL_COPY, short: '学个新本事' },
-  subagent: { lines: SUBAGENT_COPY, short: '叫人来搭把手' },
-  subagent_fork: { lines: SUBAGENT_COPY, short: '叫人来搭把手' },
+  write: { lines: WRITE_COPY, short: '何か書き込む' },
+  edit: { lines: EDIT_COPY, short: 'ここを直すね' },
+  str_replace_editor: { lines: EDIT_COPY, short: 'ここを直すね' },
+  glob: { lines: GLOB_COPY, short: 'どこにあるか探す' },
+  grep: { lines: GREP_COPY, short: 'あちこち探してみる' },
+  present: { lines: PRESENT_COPY, short: '何か見せるね' },
+  skill: { lines: SKILL_COPY, short: '新しい技を覚える' },
+  subagent: { lines: SUBAGENT_COPY, short: '助っ人を呼ぶ' },
+  subagent_fork: { lines: SUBAGENT_COPY, short: '助っ人を呼ぶ' },
   workflow: {
-    lines: ['把活排个序，开工咯', '几件事一起安排上', '按顺序一件件来'],
-    short: '把活排一排',
+    lines: ['作業を並べて始めるよ', 'いくつかまとめて手配するね', '順番に一つずつやるよ'],
+    short: '作業を並べる',
   },
   web_search: {
-    lines: ['我去查查 {target}', '{target} 得搜搜才知道', '上网问问 {target} 吧'],
-    short: '上网查查',
+    lines: ['{target} を調べてくるね', '{target} は検索してみないとね', 'ネットで {target} を聞いてみる'],
+    short: 'ネットで調べる',
   },
   web_fetch: {
-    lines: ['去 {target} 瞅瞅有啥', '{target} 这页我翻翻', '看看 {target} 上写了啥'],
-    short: '去网上看看',
+    lines: ['{target} を見に行くね', '{target} のページをめくるよ', '{target} に何が書いてあるか見るね'],
+    short: 'ネットを見に行く',
   },
 };
 
 /** 未知工具：只说一句氛围话，不报工具名（`str_replace_editor` 这种名字上屏很怪）。 */
-export const UNKNOWN_TOOL_LINE: CopyLine = '这工具是干嘛的';
+export const UNKNOWN_TOOL_LINE: CopyLine = 'このツールは何だろう';
 
 /** 兜底：没进表的命令（npm / python / node / tsc / eslint / docker…），短命令名会上屏。 */
-export const COMMAND_FALLBACK: readonly CopyLine[] = ['跑一下 {cmd} 咯', '{cmd} 跑起来了', '让 {cmd} 干点活'];
+export const COMMAND_FALLBACK: readonly CopyLine[] = [
+  '{cmd} を実行してみるね',
+  '{cmd} が動き出したよ',
+  '{cmd} に働いてもらうね',
+];
 
 /** 兜底：命令名本身太长（如 Get-NetTCPConnection）时用，不带名字。 */
-export const COMMAND_NAME_TOO_LONG: CopyLine = '跑一个命令咯';
+export const COMMAND_NAME_TOO_LONG: CopyLine = 'コマンドを実行するよ';
 
-const CD_COPY: readonly CopyLine[] = ['先把位置挪一挪', '切到那个目录去', '挪个地方继续干活'];
+const CD_COPY: readonly CopyLine[] = [
+  'まず場所を移動するね',
+  'そのディレクトリに移るよ',
+  '場所を変えて続けるね',
+];
 
-const LS_COPY: readonly CopyLine[] = ['看看这儿都有啥', '这层都有什么东西', '翻翻这里有没有'];
+const LS_COPY: readonly CopyLine[] = [
+  'ここに何があるか見るね',
+  'この階層の中身は何かな',
+  'ここにあるか見てみる',
+];
 
-const CAT_COPY: readonly CopyLine[] = ['把内容亮出来瞧瞧', '看看里头写了什么', '读读这份内容'];
+const CAT_COPY: readonly CopyLine[] = [
+  '中身を見せて',
+  '何が書いてあるか見るね',
+  'この内容を読むよ',
+];
 
-const MKDIR_COPY: readonly CopyLine[] = ['建个新文件夹', '腾个地方出来', '新开一个目录'];
+const MKDIR_COPY: readonly CopyLine[] = [
+  '新しいフォルダを作るね',
+  '場所を空けるよ',
+  '新しいディレクトリを切る',
+];
 
-const RM_COPY: readonly CopyLine[] = ['把不要的清掉', '这份就别留了', '清理一下这些'];
+const RM_COPY: readonly CopyLine[] = ['いらないものを消すね', 'これは残さないよ', 'これを片づけるね'];
 
-const MV_COPY: readonly CopyLine[] = ['把东西挪个地儿', '换个位置放', '挪到那边去'];
+const MV_COPY: readonly CopyLine[] = ['場所を移すね', '置き場所を変えるよ', 'あっちへ移すね'];
 
-const CP_COPY: readonly CopyLine[] = ['抄一份留着', '复制一份备用', '再备一份'];
+const CP_COPY: readonly CopyLine[] = ['コピーを取っておくね', '予備に複製するよ', 'もう一部用意するね'];
 
-const CURL_COPY: readonly CopyLine[] = ['去问问接口有没有人', '敲敲门看看通不通', '请求一下那个地址'];
+const CURL_COPY: readonly CopyLine[] = [
+  'API に問い合わせてみるね',
+  'ノックして通じるか見るよ',
+  'そのアドレスにリクエストするね',
+];
 
-const CHECKOUT_COPY: readonly CopyLine[] = ['换到那个分支瞧瞧', '切个分支看看', '换条路继续走'];
+const CHECKOUT_COPY: readonly CopyLine[] = [
+  'そのブランチに切り替えるね',
+  'ブランチを変えてみるよ',
+  '別ルートで続けるね',
+];
 
 /** 命令 / 「命令 子命令」→ 3 句候选（键一律小写，别名共用同一组）。 */
 export const COMMAND_COPY: Readonly<Record<string, readonly CopyLine[]>> = {
@@ -133,24 +193,24 @@ export const COMMAND_COPY: Readonly<Record<string, readonly CopyLine[]>> = {
   'invoke-webrequest': CURL_COPY,
 
   // git：没命中子命令时用这一组
-  git: ['折腾折腾 git 仓库', '跟 git 打个交道', 'git 这边动一动'],
-  'git status': ['看看现在改了些什么', '查查工作区干不干净', '目前是啥状况呢'],
-  'git diff': ['瞅瞅这次到底改哪了', '到底动了哪些地方呀', '对比看看都改了啥'],
-  'git log': ['让我康康你的提交历史', '翻翻最近都提交了啥', '看看这些天干了什么'],
-  'git add': ['先把这些攒起来', '好东西先收进去', '把改动的都登记上'],
-  'git commit': ['代码得保存好才行', '打个提交，记一笔', '先存一份再说'],
-  'git push': ['该推上去了吧，我来', '推送一下，交给我', '该让远端知道了'],
-  'git pull': ['拉一下最新的过来', '把远端的新东西拿回来', '先同步一下再说'],
-  'git fetch': ['先问问远端有没有新东西', '悄悄看一眼远端', '拉个最新状态下来'],
+  git: ['git リポジトリをいじるね', 'git と格闘するよ', 'git まわりを触るね'],
+  'git status': ['何が変わったか見るね', '作業ツリーがきれいか確認するよ', 'いまどうなってるかな'],
+  'git diff': ['どこを変えたか見るね', 'どこを触ったのかな', '差分を見比べるよ'],
+  'git log': ['コミット履歴を見せて', '最近のコミットをめくるよ', 'この数日の作業を見るね'],
+  'git add': ['まずまとめておくね', 'いいものから片づけるよ', '変更を登録するね'],
+  'git commit': ['コードは保存しないとね', 'コミットして記録するよ', 'まず保存しておくね'],
+  'git push': ['そろそろ push するね', 'push は任せて', 'リモートに伝えるね'],
+  'git pull': ['最新を pull するね', 'リモートの新しいのを持ってくるよ', 'まず同期するね'],
+  'git fetch': ['リモートに新しいのがないか見るね', 'こっそりリモートを覗くよ', '最新状態を取ってくるね'],
   'git checkout': CHECKOUT_COPY,
   'git switch': CHECKOUT_COPY,
-  'git branch': ['看看都有哪些分支', '理理这些分支', '新建个分支备用'],
-  'git merge': ['把两边合到一起', '合并一下，别打架', '这两条线该合了'],
-  'git rebase': ['把历史重新捋一捋', '重新排一下顺序', '理一理提交顺序'],
-  'git stash': ['先把改动收起来', '这些先搁一边', '暂时藏起来一下'],
-  'git clone': ['把整个仓库搬回来', '照着一份抄下来', '把这份拿下来瞧瞧'],
-  'git reset': ['把刚才的退回去', '撤销一下这几步', '回到之前的样子'],
-  'git tag': ['给这次打个标记', '贴个版本标签', '记个里程碑'],
+  'git branch': ['ブランチ一覧を見るね', 'ブランチを整理するよ', '新しいブランチを作っておくね'],
+  'git merge': ['両方を合わせるね', 'マージするよ、喧嘩しないで', 'この2本を統合するね'],
+  'git rebase': ['履歴を整え直すね', '順番を並べ直すよ', 'コミット順を整えるね'],
+  'git stash': ['変更をいったんしまうね', 'これは横に置いておくよ', 'しばらく隠しておくね'],
+  'git clone': ['リポジトリを丸ごと持ってくるね', 'そっくり写し取るよ', 'これを取ってきて見るね'],
+  'git reset': ['さっきのを取り消すね', 'この数手を戻すよ', '前の状態に戻すね'],
+  'git tag': ['これに印を付けるね', 'バージョンタグを貼るよ', 'マイルストーンを記録するね'],
 };
 
 /**
