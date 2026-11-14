@@ -3,7 +3,7 @@
 **DeepSeek Harness（DSH）のデスクトップペットプラグイン [dsh-pet](https://github.com/PC2005-cloud/dsh-pet) を日本語化した、非公式のフォークです。**
 
 元プロジェクト: **https://github.com/PC2005-cloud/dsh-pet** （作者: [PC2005-cloud](https://github.com/PC2005-cloud)）
-ベースバージョン: **dsh-pet 0.4.7**
+ベースバージョン: **dsh-pet 0.4.8**
 
 > 本リポジトリは原作者・DeepSeek のいずれからも公認されたものではありません。非公式の二次創作物です。
 
@@ -26,6 +26,7 @@
 | 吹き出し | 作業ステータス 6 段階、寝る / 起きる / 拒否の台詞 |
 | 残高バブル | 残高 / ピーク・オフピーク / 枠の使用率 / リセット済み / 今期 など |
 | 待办リマインド | 「◯◯の時間だよ、忘れずにね」など |
+| 天気・環境バブル | 天気 / 体感 / 湿度 / 風速 / 観測 / いまは天気を取得できません |
 | システム通知 | 会話が完了しました / 生成に失敗しました / 出力が打ち切られました / 権限を要求しています など |
 | スラッシュコマンド | `/pet` `/chat` `/balance` の説明と結果メッセージ |
 | 「白ごはん」機能 | 台詞プール 6 場面 × 3 句、トースト、エラー文 |
@@ -74,7 +75,7 @@ dsh plugin --profile desktop add link:/path/to/dsh-pet-ja/dsh-pet
 ### 元に戻す
 
 ```sh
-dsh plugin --profile web add dsh-pet@0.4.7
+dsh plugin --profile web add dsh-pet@0.4.8
 ```
 
 > このコマンドは npm 版へ切り替えるため、本フォークの日本語化は無効になります（設定と素材は残ります）。詳しくは「[アップデートと上流への追随](#アップデートと上流への追随)」を参照してください。
@@ -127,7 +128,7 @@ npm run build
 | --- | --- |
 | 上流の新機能・修正を取り込みたい | **`git fetch upstream && git rebase upstream/main`（推奨）** |
 | 日本語化をやめて本家の挙動に戻したい | `dsh plugin --profile web add dsh-pet@<version>` |
-| 特定バージョンに固定したい | `dsh plugin --profile web add dsh-pet@0.4.7` |
+| 特定バージョンに固定したい | `dsh plugin --profile web add dsh-pet@0.4.8` |
 
 ## 設定
 
@@ -155,7 +156,7 @@ $DSH_HOME/dsh-pet/
 | 通知 | 会話完了・生成失敗・出力截断・権限要求・回答待ち |
 | コマンド | `/pet` `/chat` `/balance` の説明と結果 |
 | LLM プロンプト | ひとりごと・寝言・ペルソナ・動作/配図連動の指示文 |
-| 環境情報 | 天気 28 種・時間帯 9 種・曜日・祝日 29 種 |
+| 環境情報 | 天気 28 種・時間帯 9 種・曜日・祝日 29 種・環境バブル |
 | 音声 | 音色の表示名とタグ |
 
 **ロジック・API・設定スキーマは上流と同一**（変更は文字列のみ）。

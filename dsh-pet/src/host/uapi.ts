@@ -7,6 +7,7 @@
  * @module dsh-pet/src/host/uapi
  */
 import { fetchJson } from './fetch-json.ts';
+import { wmoText } from './wmo-code.ts';
 import type { WeatherSnapshot } from './weather.ts';
 
 /** 端点：不带 city 时上游按客户端 IP 自动定位（实测比 ip-api 准，教育网 IP 能落到南昌）。 */
@@ -164,17 +165,18 @@ function toEnvironment(body: Record<string, unknown>, nowMs: number): UapiEnviro
     return null;
   }
   const apparentC = numOf(body.feels_like) ?? temperatureC;
+  const code = wmoOf(numOf(body.weather_icon));
   return {
     region: textOf(body.province) ?? '',
     city,
     weather: {
       city,
-      summary,
+      summary: wmoText(code),
       temperatureC,
       apparentC,
       humidityPercent,
       windKph: windKphOf(textOf(body.wind_power)),
-      code: wmoOf(numOf(body.weather_icon)),
+      code,
       observedAt: observedAtOf(body.report_time, nowMs),
     },
   };

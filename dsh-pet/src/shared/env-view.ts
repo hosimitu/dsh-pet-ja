@@ -55,9 +55,9 @@ function observedTimeOf(raw: string): string | undefined {
 export function envBubbleView(state: EnvState): EnvBubbleView {
   // 省市分开给，这里按「省 + 市」拼标题；两段都没有时退回中性的「天气」
   const place = [state.region ?? '', state.city ?? ''].filter((part) => part !== '').join('');
-  const title = place === '' ? '天气' : place;
+  const title = place === '' ? '天気' : place;
   const weather = state.weather;
-  if (weather === undefined) return { title, rows: [], emptyText: '暂时查不到天气' };
+  if (weather === undefined) return { title, rows: [], emptyText: 'いまは天気を取得できません' };
   const observed = observedTimeOf(weather.observedAt);
   return {
     title,
@@ -67,8 +67,8 @@ export function envBubbleView(state: EnvState): EnvBubbleView {
     rows: [
       { label: '体感', value: numText(weather.apparentC) + '°C' },
       { label: '湿度', value: numText(weather.humidityPercent) + '%' },
-      { label: '风速', value: numText(weather.windKph) + ' km/h' },
+      { label: '風速', value: numText(weather.windKph) + ' km/h' },
     ],
-    ...(observed === undefined ? {} : { footer: '观测 ' + observed }),
+    ...(observed === undefined ? {} : { footer: '観測 ' + observed }),
   };
 }
