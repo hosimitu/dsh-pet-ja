@@ -7,7 +7,7 @@
  */
 
 /** 时段文案：一天分 9 档（划分见 SLOTS）。 */
-export type TimeSlot = '凌晨' | '清晨' | '早上' | '上午' | '中午' | '下午' | '傍晚' | '晚上' | '深夜';
+export type TimeSlot = '未明' | '早朝' | '朝' | '午前' | '昼' | '午後' | '夕方' | '夜' | '深夜';
 
 /**
  * 时段划分表：[起始小时, 时段]，按起始小时从晚到早排列——匹配时取第一个不超过当前小时的档。
@@ -16,18 +16,18 @@ export type TimeSlot = '凌晨' | '清晨' | '早上' | '上午' | '中午' | '�
  */
 const SLOTS: ReadonlyArray<readonly [number, TimeSlot]> = [
   [23, '深夜'],
-  [19, '晚上'],
-  [17, '傍晚'],
-  [13, '下午'],
-  [11, '中午'],
-  [9, '上午'],
-  [7, '早上'],
-  [5, '清晨'],
-  [0, '凌晨'],
+  [19, '夜'],
+  [17, '夕方'],
+  [13, '午後'],
+  [11, '昼'],
+  [9, '午前'],
+  [7, '朝'],
+  [5, '早朝'],
+  [0, '未明'],
 ];
 
 /** 星期文案：索引 = Date.getDay()（0 = 周日）。 */
-export const WEEKDAYS = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'] as const;
+export const WEEKDAYS = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'] as const;
 
 /** 一天毫秒数（日期算术用 UTC 毫秒，避开本地时区）。 */
 export const DAY_MS = 86_400_000;
@@ -60,7 +60,7 @@ export function timeSlotOf(hour: number): TimeSlot {
   for (const [start, slot] of SLOTS) {
     if (hour >= start) return slot;
   }
-  return '凌晨';
+  return '未明';
 }
 
 /**
@@ -68,6 +68,6 @@ export function timeSlotOf(hour: number): TimeSlot {
  * @param day - Date.getDay()（0 = 周日）。
  * @returns 「周末」（周六/周日）或「工作日」。
  */
-export function dayKindOf(day: number): '工作日' | '周末' {
-  return day === 0 || day === 6 ? '周末' : '工作日';
+export function dayKindOf(day: number): '平日' | '週末' {
+  return day === 0 || day === 6 ? '週末' : '平日';
 }

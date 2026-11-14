@@ -25,10 +25,10 @@ export type WhisperGenerateResult =
 const TIMEOUT_MS = 30_000;
 
 /** 碎碎念指令：纯文本（没有配图时的原样请求）。 */
-const USER_TEXT = '随便说一句日常碎碎念，一句就好，20 字以内。';
+const USER_TEXT = '日常のひとりごとを、ひとつだけ、25文字以内で。';
 
 /** 梦话指令：睡觉期间嘟囔一句。与碎碎念指令同属「功能指令」，不进配置（配置里只有人设）。 */
-const SLEEP_TALK_TEXT = '你正在睡觉，随便嘟囔一句梦话，一句就好，20 字以内；含糊、半梦半醒，不要清醒地回应任何人。';
+const SLEEP_TALK_TEXT = 'あなたは眠っている。寝言をひとつだけ、25文字以内で。曖昧に、半分夢の中のように。誰に対してもはっきり応答しないこと。';
 
 /** 梦话指令的对外出口：调用方传进 generateWhisper 的 instruction，避免再抄一份文案。 */
 export const SLEEP_TALK_INSTRUCTION = SLEEP_TALK_TEXT;
@@ -42,13 +42,13 @@ export const SLEEP_TALK_INSTRUCTION = SLEEP_TALK_TEXT;
  */
 function userTextWithMeme(meme: { name: string; desc: string }): string {
   return (
-    '随便说一句日常碎碎念，一句就好，20 字以内。\n' +
-    '这次会配一张表情包一起显示，图的内容是：' +
+    '日常のひとりごとを、ひとつだけ、25文字以内で。\n' +
+    '今回はミーム画像を1枚いっしょに表示する。画像の内容は：' +
     meme.name +
     '（' +
     meme.desc +
     '）。\n' +
-    '请让这句话和这张图的情绪/场景自然契合，像是配合画面说出来的；不要描述画面本身。'
+    'この画像の雰囲気や場面に自然に合うセリフにして。絵そのものの説明はしない。'
   );
 }
 
