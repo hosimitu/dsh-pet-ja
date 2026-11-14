@@ -86,9 +86,9 @@ function historyMarkersOf(message: ChatMemoryMessage): string {
  *  交给模型选而不是随机抽：对话有真实上下文（用户输入 + 历史），按语境挑才贴合。 */
 function imageInstruction(pool: MemeEntry[]): string {
   return (
-    '\n\n[配图] 回复结尾可选附一张表情包给用户看，从下列清单里挑最贴合当前语境的：\n' +
+    '\n\n[画像] 返信の最後に、いまの文脈にいちばん合うミーム画像を1枚添えてもよい。候補はこちら：\n' +
     memeCatalog(pool) +
-    '\n挑中就在回复最后另起一行写 [图:名称]（名称原样照抄）；没有合适的就完全不要写这个标记。'
+    '\n選んだら返信の最後に改行して [图:名前] と書く（名前はそのままコピー）。合うものがなければこの印は書かない。'
   );
 }
 

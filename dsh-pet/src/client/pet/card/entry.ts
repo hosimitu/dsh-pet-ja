@@ -358,7 +358,8 @@ export function createCardEntry(rt: CardEntryRuntime) {
         { label: '天気を見る', action: 'show-environment' },
         { label: 'やること', action: 'todo', hint: TODO_HOTKEY_HINT },
         { label: 'ひとりごと', action: 'whisper' },
-        { label: 'おしゃべり', action: 'chat', hint: CHAT_HOTKEY_HINT },        ...(memes ? [memes] : []),
+        { label: 'おしゃべり', action: 'chat', hint: CHAT_HOTKEY_HINT },
+        ...(memes ? [memes] : []),
         ...(canSleep ? [sleepItem] : []),
       ];
       const tail: MenuNode[] = [
