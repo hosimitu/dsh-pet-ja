@@ -77,6 +77,58 @@ dsh plugin --profile desktop add link:/path/to/dsh-pet-ja/dsh-pet
 dsh plugin --profile web add dsh-pet@0.4.7
 ```
 
+> このコマンドは npm 版へ切り替えるため、本フォークの日本語化は無効になります（設定と素材は残ります）。詳しくは「[アップデートと上流への追随](#アップデートと上流への追随)」を参照してください。
+
+## アップデートと上流への追随
+
+本フォークは profile に `link:` で登録されているため、**npm 版の更新は自動では降ってきません**。更新の方法によって結果が変わります。
+
+### ⚠️ npm 版に戻すとフォークの改修は失われます
+
+```sh
+dsh plugin --profile web add dsh-pet@0.4.8
+```
+
+このコマンドは profile の依存を npm レジストリ版に差し替えるため、**本フォークの日本語化（ソース改修）はすべて無効になります**。`node_modules` の中身が npm 版に置き換わるためです。
+
+ただし、以下はプラグインの外にあるユーザーデータなので**そのまま残ります**。
+
+| 残るもの | 場所 |
+| --- | --- |
+| 吹き出し文言・アニメ名・配图名 | `$DSH_HOME/dsh-pet/main-config.jsonc` |
+| 日本語名のアニメ素材（114 本） | `$DSH_HOME/dsh-pet/main-animation/webm/` |
+| 日本語名の表情画像（27 枚） | `$DSH_HOME/dsh-pet/memes/` |
+
+つまり npm 版に戻すと、**メニューや通知は中国語に戻りますが、ペットの設定と素材名は日本語のまま**という状態になります。
+
+### ✅ 上流に追随する場合は `upstream` を pull する（推奨）
+
+フォークを維持したまま上流の更新を取り込みたい場合は、npm ではなく **git で追随**してください。
+
+```sh
+cd /path/to/dsh-pet-ja
+
+git fetch upstream
+git rebase upstream/main     # 競合があれば解消
+cd dsh-pet
+npm install
+npm run build
+```
+
+その後、DSH を再起動すると反映されます。
+
+- `upstream` = 本家（https://github.com/PC2005-cloud/dsh-pet）、`origin` = 本フォーク
+- 競合は主に `src/**` の文言部分です。**日本語を残す側**で解消してください
+- ビルド（`npm run build`）を忘れると、`lib/` が古いままになります
+
+### どれを選ぶか
+
+| 目的 | 方法 |
+| --- | --- |
+| 上流の新機能・修正を取り込みたい | **`git fetch upstream && git rebase upstream/main`（推奨）** |
+| 日本語化をやめて本家の挙動に戻したい | `dsh plugin --profile web add dsh-pet@<version>` |
+| 特定バージョンに固定したい | `dsh plugin --profile web add dsh-pet@0.4.7` |
+
 ## 設定
 
 設定は上流と完全に同じです。`$DSH_HOME/dsh-pet/main-config.jsonc` を編集するか、DSH の「設定 → ペット設定」から変更します。
