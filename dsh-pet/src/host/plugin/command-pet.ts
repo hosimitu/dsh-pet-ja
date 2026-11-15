@@ -66,7 +66,10 @@ export function registerPetCommand(deps: CommandPetInput): void {
                 '），请用 id 指定',
             };
           }
-          return { kind: 'error', text: 'ペット「' + arg + '」は見つかりません（id か名前。/pet で選択ボックスが開きます）' };
+          return {
+            kind: 'error',
+            text: 'ペット「' + arg + '」は見つかりません（id か名前。/pet で選択ボックスが開きます）',
+          };
         },
       }),
     'dsh-pet: /pet command',

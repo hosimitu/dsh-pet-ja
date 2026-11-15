@@ -38,11 +38,7 @@ const WRITE_COPY: readonly CopyLine[] = [
 ];
 
 /** 改文件。 */
-const EDIT_COPY: readonly CopyLine[] = [
-  '{target} を直さないとね',
-  '{target} をいじるよ',
-  '{target} のここを直すね',
-];
+const EDIT_COPY: readonly CopyLine[] = ['{target} を直さないとね', '{target} をいじるよ', '{target} のここを直すね'];
 
 /** 找文件。 */
 const GLOB_COPY: readonly CopyLine[] = [
@@ -52,18 +48,10 @@ const GLOB_COPY: readonly CopyLine[] = [
 ];
 
 /** 搜内容。 */
-const GREP_COPY: readonly CopyLine[] = [
-  '{target} はどこかな',
-  '{target} を探してみる',
-  '{target} はどこにあるのかな',
-];
+const GREP_COPY: readonly CopyLine[] = ['{target} はどこかな', '{target} を探してみる', '{target} はどこにあるのかな'];
 
 /** 给人看文件。 */
-const PRESENT_COPY: readonly CopyLine[] = [
-  '{target} を見せるね',
-  '{target} を持ってきたよ',
-  'はい、{target} はこれ',
-];
+const PRESENT_COPY: readonly CopyLine[] = ['{target} を見せるね', '{target} を持ってきたよ', 'はい、{target} はこれ'];
 
 /** 学技能。 */
 const SKILL_COPY: readonly CopyLine[] = [
@@ -129,29 +117,13 @@ export const COMMAND_FALLBACK: readonly CopyLine[] = [
 /** 兜底：命令名本身太长（如 Get-NetTCPConnection）时用，不带名字。 */
 export const COMMAND_NAME_TOO_LONG: CopyLine = 'コマンドを実行するよ';
 
-const CD_COPY: readonly CopyLine[] = [
-  'まず場所を移動するね',
-  'そのディレクトリに移るよ',
-  '場所を変えて続けるね',
-];
+const CD_COPY: readonly CopyLine[] = ['まず場所を移動するね', 'そのディレクトリに移るよ', '場所を変えて続けるね'];
 
-const LS_COPY: readonly CopyLine[] = [
-  'ここに何があるか見るね',
-  'この階層の中身は何かな',
-  'ここにあるか見てみる',
-];
+const LS_COPY: readonly CopyLine[] = ['ここに何があるか見るね', 'この階層の中身は何かな', 'ここにあるか見てみる'];
 
-const CAT_COPY: readonly CopyLine[] = [
-  '中身を見せて',
-  '何が書いてあるか見るね',
-  'この内容を読むよ',
-];
+const CAT_COPY: readonly CopyLine[] = ['中身を見せて', '何が書いてあるか見るね', 'この内容を読むよ'];
 
-const MKDIR_COPY: readonly CopyLine[] = [
-  '新しいフォルダを作るね',
-  '場所を空けるよ',
-  '新しいディレクトリを切る',
-];
+const MKDIR_COPY: readonly CopyLine[] = ['新しいフォルダを作るね', '場所を空けるよ', '新しいディレクトリを切る'];
 
 const RM_COPY: readonly CopyLine[] = ['いらないものを消すね', 'これは残さないよ', 'これを片づけるね'];
 

@@ -44,7 +44,7 @@
 ### 前提
 
 - Node.js **22.12 以上**
-- DSH **0.2.2-rc.1**（`dsh --version` で確認）
+- DSH **0.2.2-rc.3**（`dsh --version` で確認）
 - Windows / macOS / Linux
 
 ### 手順

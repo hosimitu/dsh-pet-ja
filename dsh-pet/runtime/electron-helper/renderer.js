@@ -85,7 +85,13 @@ async function boot() {
     // 本窗口只承载一只宠物：petIndex 由主进程按 DSH_PET_PETS 顺序注入
     const pet = pets[CONFIG.petIndex];
     if (!pet) {
-      showError('petIndex=' + CONFIG.petIndex + ' がデスクトップペット一覧の範囲外です（全 ' + pets.length + ' 匹）。このウィンドウにはペットを作成しません');
+      showError(
+        'petIndex=' +
+          CONFIG.petIndex +
+          ' がデスクトップペット一覧の範囲外です（全 ' +
+          pets.length +
+          ' 匹）。このウィンドウにはペットを作成しません',
+      );
       scheduleReboot();
       return;
     }
